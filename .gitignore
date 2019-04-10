@@ -1,0 +1,11 @@
+/data/VOTERS.db
+
+/venv/
+
+/data/*
+
+*.pyc
+*.db
+venv/
+
+*.csvls -lah
