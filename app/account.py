@@ -7,17 +7,18 @@ class Account(ORM):
     fields = ["username", "password_hash"]
 
     def __init__(self, *args, **kwargs):
-            self.pk = kwargs.get('pk')
-            self.username = kwargs.get('username')
-            self.password_hash = kwargs.get('password_hash')
-  
+        self.pk = kwargs.get('pk')
+        self.username = kwargs.get('username')
+        self.password_hash = kwargs.get('password_hash')
+        self.set_password(self.password_hash)
+        
     def set_password(self, password):
-        print(password)
-        input()
         hashed_pw = hash_password(password)
-        print(hashed_pw)
-        input()
         self.password_hash = hashed_pw 
-        return hashed_pw
 
-  
+    @classmethod
+    def login(cls, username, password):
+        return cls.select_one_where("WHERE username = ? AND password_hash = ?", 
+                                   (username, hash_password(password)))
+
+                                   

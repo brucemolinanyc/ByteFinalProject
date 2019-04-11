@@ -26,3 +26,33 @@ class ORM:
 
             self.pk = curs.lastrowid
 
+    def _update(self):
+        with sqlite3.connect(self.dbpath) as conn:
+            curs = conn.cursor()
+            assignments = ", ".join([
+                "{} = ?".format(field) for field in self.fields])
+
+            SQL = """ UPDATE {tablename} SET {assignments}
+                      WHERE pk = ?; """.format(
+                tablename=self.tablename, assignments=assignments)
+
+            values = [getattr(self, field) for field in self.fields]
+            values.append(self.pk)
+
+            curs.execute(SQL, values)
+
+    
+    @classmethod
+    def select_one_where(cls, whereclause="", values=""):
+        with sqlite3.connect(cls.dbpath) as conn:
+            conn.row_factory = sqlite3.Row
+            curs = conn.cursor()
+
+            SQL = """ SELECT * FROM {tablename} {whereclause}; """.format(
+                tablename=cls.tablename, whereclause=whereclause)
+
+            curs.execute(SQL, values)
+            result = curs.fetchone()
+            if not result:
+                return None
+            return cls(**result)
