@@ -1,6 +1,9 @@
 from flask import jsonify, abort, request
 from flask_app import app
 from app.account import Account
+from app.orm import ORM
+import jwt
+import datetime
 
 UNAUTHORIZED = {"error": "unauthorized", "status_code": 401}
 NOT_FOUND = {"error": "not found", "status_code": 404}
@@ -11,11 +14,30 @@ BAD_REQUEST = {"error": "bad request", "status_code": 400}
 def home():
     return jsonify({"test": "working"})
 
-@app.route('/login', methods=['POST'])
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    if not request.json or 'username' not in request.json or 'password_hash' not in request.json:
+        return jsonify(BAD_REQUEST), 401
+    account = Account(username = request.json['username'], password_hash =request.json['password_hash'])
+    account.save()
+    token = jwt.encode({'user_id': account.pk, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60)}, app.config['JWT_SECRET_KEY'] )
+    
+    return jsonify({ 'token' : token.decode('UTF-8'), 'user_id': account.pk })
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+
     if not request.json or 'username' not in request.json or 'password' not in request.json:
         return jsonify(BAD_REQUEST), 401
     account = Account.login(request.json['username'], request.json['password'])
     if not account:
         return jsonify(UNAUTHORIZED), 401
-    return jsonify({"login": "working"})
+    
+    token = jwt.encode({'user_id': account.pk, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60)}, app.config['JWT_SECRET_KEY'] )
+
+    return jsonify({ 'token' : token.decode('UTF-8'), 'user_id': account.pk })
+
+@app.route('/user/<id>')
+def user(id):
+        user = Account.one_from_pk(id)
+        return jsonify({"user": user.username})

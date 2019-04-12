@@ -56,3 +56,10 @@ class ORM:
             if not result:
                 return None
             return cls(**result)
+    
+    @classmethod
+    def one_from_pk(cls, pk):
+        result = cls.select_one_where("WHERE pk = ?", (pk, ))
+        if not result:
+            raise KeyError("no such pk: {}".format(pk))
+        return result
