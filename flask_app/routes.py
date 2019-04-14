@@ -2,6 +2,7 @@ from flask import jsonify, abort, request
 from flask_app import app
 from app.account import Account
 from app.orm import ORM
+from app.util import encodeAuthToken, decodeAuthToken
 import jwt
 import datetime
 
@@ -20,9 +21,9 @@ def create():
         return jsonify(BAD_REQUEST), 401
     account = Account(username = request.json['username'], password_hash =request.json['password_hash'])
     account.save()
-    token = jwt.encode({'user_id': account.pk, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60)}, app.config['JWT_SECRET_KEY'] )
+    token = encodeAuthToken(account.pk)
     
-    return jsonify({ 'token' : token.decode('UTF-8'), 'user_id': account.pk })
+    return jsonify({'status': 'success', 'auth-token': str(token)}) 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -33,11 +34,19 @@ def login():
     if not account:
         return jsonify(UNAUTHORIZED), 401
     
-    token = jwt.encode({'user_id': account.pk, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60)}, app.config['JWT_SECRET_KEY'] )
+    token = encodeAuthToken(account.pk)
+    return jsonify({'status': 'success', 'auth-token': str(token)}) 
 
-    return jsonify({ 'token' : token.decode('UTF-8'), 'user_id': account.pk })
+@app.route('/home', methods=['GET'])
+def homepage():
+    authHeader = request.headers['Authorization']
+    token = authHeader.split(" ")[1]
+    decoded_token = decodeAuthToken(token)
+    user = Account.one_from_pk(decoded_token['user'])
+    return jsonify({'status': 'success', 'user': user.username}) 
 
-@app.route('/user/<id>')
-def user(id):
-        user = Account.one_from_pk(id)
-        return jsonify({"user": user.username})
+
+# @app.route('/user/<id>')
+# def user(id):
+#         user = Account.one_from_pk(id)
+#         return jsonify({"user": user.username})
