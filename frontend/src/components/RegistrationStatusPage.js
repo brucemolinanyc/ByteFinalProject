@@ -6,7 +6,6 @@ const options = [
   { key: 'f', text: 'Female', value: 'female' }
 ]
 
-
 const RegistrationStatusPage = () => (
     <Container>
         <Form>
