@@ -5,6 +5,7 @@ import HomePage from '../components/HomePage';
 import LoginPage from '../components/LoginPage';
 import NotFoundPage from '../components/NotFoundPage';
 import ProfilePage from '../components/ProfilePage';
+import RegistrationStatusPage from '../components/RegistrationStatusPage';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -14,6 +15,7 @@ const AppRouter = () => (
         <Route path="/" component={LoginPage} exact={true} />
         <Route path="/home" component={HomePage} />
         <Route path="/profile" component={ProfilePage} />
+        <Route path="/vote" component={RegistrationStatusPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

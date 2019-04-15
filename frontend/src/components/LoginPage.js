@@ -1,18 +1,22 @@
 import React from 'react';
 
 
-class LoginPage extends React.Component{
+const LoginPage = () => (
 
+    <div>
+    This is the Login page
 
+    <div>
+        Username <input type="text" />
+    </div>
+    
+    <div>            
+        Password <input type="text" />
+    </div>
 
-    render(){
-        return(
-            <div>This is the Login page</div>
-        )
-    }
+    <button>Login</button>
 
+</div>
 
-}
-
-
+) 
 export default LoginPage;
