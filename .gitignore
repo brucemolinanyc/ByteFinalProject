@@ -4,6 +4,9 @@
 
 /backend/node_modules
 
+/semantic 
+/node_modules
+
 /data/*
 
 *.pyc
