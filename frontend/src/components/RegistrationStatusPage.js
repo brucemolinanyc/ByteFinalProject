@@ -1,20 +1,40 @@
-import React from 'react';
+import React from 'react'
+import { Form, Container } from 'semantic-ui-react'
 
-class RegistrationStatusPage extends React.Component{
-
-    render(){
-        return(
-            <div>
-                RegistrationStatusPage
-            </div>
-        )
-    }
+const options = [
+  { key: 'm', text: 'Male', value: 'male' },
+  { key: 'f', text: 'Female', value: 'female' }
+]
 
 
+const RegistrationStatusPage = () => (
+    <Container>
+        <Form>
+            <Form.Group >
+                <Form.Input fluid label='First name' placeholder='First name' width={4}  />
+                <Form.Input fluid label='Last name' placeholder='Last name' width={4}/>
+                <Form.Select fluid label="Gender" options={options} placeholder='Gender'  width={2}/>
+            </Form.Group>
+            <Form.Group widths=''>
+                <Form.Input fluid label='Street Address' placeholder='Street Address' width={8}  />
+                <Form.Input fluid label='Apt/Unit#' placeholder='Apt/Unit#' width={2}/>
+            </Form.Group>
+            <Form.Group widths=''>
+                <Form.Input fluid label='City' placeholder='City' width={6}  />
+                <Form.Input fluid label='State' placeholder='State' width={2}/>
+                <Form.Input fluid label='Zip' placeholder='Zip' width={2}/>
+            </Form.Group>
+            <Form.Group >
+                <Form.Input fluid label='Month' placeholder='Month' width={4}  />
+                <Form.Input fluid label='Date' placeholder='Date' width={4}/>
+            </Form.Group>
+        </Form>   
+    </Container>
 
-}
+ 
+)
 
-export default RegistrationStatusPage;
+export default RegistrationStatusPage
 
 
 // To do:
