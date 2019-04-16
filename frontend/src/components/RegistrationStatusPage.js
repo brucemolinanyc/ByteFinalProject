@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Container } from 'semantic-ui-react'
+import StateDropdown from './StateDropdown'
 
 const options = [
   { key: 'm', text: 'Male', value: 'male' },
@@ -21,7 +22,7 @@ const RegistrationStatusPage = () => (
             </Form.Group>
             <Form.Group widths=''>
                 <Form.Input fluid label='City' placeholder='City' width={6}  />
-                <Form.Input fluid label='State' placeholder='State' width={2}/>
+                <StateDropdown />
                 <Form.Input fluid label='Zip' placeholder='Zip' width={2}/>
             </Form.Group>
             <Form.Group >
