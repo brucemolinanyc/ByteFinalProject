@@ -2,6 +2,7 @@ import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
+import './StateDropdown.css'
 
 const addressDefinitions = faker.definitions.address
 const stateOptions = _.map(addressDefinitions.state, (state, index) => ({
@@ -11,7 +12,8 @@ const stateOptions = _.map(addressDefinitions.state, (state, index) => ({
 }))
 
 const StateDropdown = () => (
-  <Dropdown placeholder='State' search selection options={stateOptions} />
+  <Dropdown className="dropdown" placeholder='State' search selection options={stateOptions} />
+
 )
 
 export default StateDropdown

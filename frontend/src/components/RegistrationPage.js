@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
-const LoginPage
+const RegistrationPage
  = () => (
   <div className='login-form'>
     {/*
@@ -20,8 +20,8 @@ const LoginPage
     </style>
     <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as='h2' color='teal' textAlign='center'>
-          <Image src='/logo.png' /> Log-in to your account
+        <Header as='h2' color='red' textAlign='center'>
+          <Image src='/logo.png' /> Create an account
         </Header>
         <Form size='large'>
           <Segment stacked>
@@ -34,17 +34,17 @@ const LoginPage
               type='password'
             />
 
-            <Button color='teal' fluid size='large'>
+            <Button color='red' fluid size='large'>
               Login
             </Button>
           </Segment>
         </Form>
         <Message>
-          Need an account? <Link to="/register">Register</Link>
+          Already registered? <Link to="/">Log in</Link>
         </Message>
       </Grid.Column>
     </Grid>
   </div>
 )
 
-export default LoginPage
+export default RegistrationPage
