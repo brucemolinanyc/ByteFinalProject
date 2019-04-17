@@ -11,9 +11,27 @@ const stateOptions = _.map(addressDefinitions.state, (state, index) => ({
   value: addressDefinitions.state_abbr[index],
 }))
 
-const StateDropdown = () => (
-  <Dropdown className="dropdown" placeholder='State' search selection options={stateOptions} />
+class StateDropdown extends React.Component{
+  constructor(props){
+    super(props)
 
-)
+    this.state = {
+      State: null
+    }
+  }
+  
+  stateChange = (e) => {
+    const state = e.target.innerHTML.replace(`<span class="text">`,"").replace(`</span>`,"")
+    this.setState({ State : state})
+    console.log(this.state)
+  }
+
+  render(){
+    return(
+      <Dropdown className="dropdown" placeholder='State' search selection options={stateOptions} onChange={this.stateChange} />
+    )
+  }
+}
+
 
 export default StateDropdown

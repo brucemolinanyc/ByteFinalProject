@@ -1,12 +1,65 @@
 import React from 'react';
 import { Form, Container} from 'semantic-ui-react';
-import StateDropdown from './StateDropdown';
 
 import './RegistrationStatusPage.css';
 
 const options = [
   { key: 'm', text: 'Male', value: 'male' },
   { key: 'f', text: 'Female', value: 'female' }
+]
+
+const states = [                       
+    {key:'Alabama', text: 'Alabama', value: 'Alabama'},
+    {key:'Alaska', text: 'Alaska', value: 'Alaska'},
+    {key:'Arizona', text: 'Arizona', value: 'Arizona'},
+    {key:'Arkansas', text: 'Arkansas', value: 'Arkansas'},
+    {key:'California', text: 'California', value: 'California'},
+    {key:'Colorado', text: 'Colorado', value: 'Colorado'},
+    {key:'Connecticut', text: 'Connecticut', value: 'Connecticut'},
+    {key:'Delaware', text: 'Delaware', value: 'Delaware'},
+    {key:'District Of Columbia', text: 'District Of Columbia', value: 'District Of Columbia'},
+    {key:'Florida', text: 'Florida', value: 'Florida'},
+    {key:'Georgia', text: 'Georgia', value: 'Georgia'},
+    {key:'Hawaii', text: 'Hawaii', value: 'Hawaii'},
+    {key:'Idaho', text: 'Idaho', value: 'Idaho'},
+    {key:'Illinois', text: 'Illinois', value: 'Illinois'},
+    {key:'Indiana', text: 'Indiana', value: 'Indiana'},
+    {key:'Iowa', text: 'Iowa', value: 'Iowa'},
+    {key:'Kansas', text: 'Kansas', value: 'Kansas'},
+    {key:'Kentucky', text: 'Kentucky', value: 'Kentucky'},
+    {key:'Louisiana', text: 'Louisiana', value: 'Louisiana'},
+    {key:'Maine', text: 'Maine', value: 'Maine'},
+    {key:'Maryland', text: 'Maryland', value: 'Maryland'},
+    {key:'Massachusetts', text: 'Massachusetts', value: 'Massachusetts'},
+    {key:'Michigan', text: 'Michigan', value: 'Michigan'},
+    {key:'Minnesota', text: 'Minnesota', value: 'Minnesota'},
+    {key:'Mississippi', text: 'Mississippi', value: 'Mississippi'},
+    {key:'Missouri', text: 'Missouri', value: 'Missouri'},
+    {key:'Montana', text: 'Montana', value: 'Montana'},
+    {key:'Nebraska', text: 'Nebraska', value: 'Nebraska'},
+    {key:'Nevada', text: 'Nevada', value: 'Nevada'},
+    {key:'New Hampshire', text: 'New Hampshire', value: 'New Hampshire'},
+    {key:'New Jersey', text: 'New Jersey', value: 'New Jersey'},
+    {key:'New Mexico', text: 'New Mexico', value: 'New Mexico'},
+    {key:'New York', text: 'New York', value: 'New York'},
+    {key:'North Carolina', text: 'North Carolina', value: 'North Carolina'},
+    {key:'North Dakota', text: 'North Dakota', value: 'North Dakota'},
+    {key:'Ohio', text: 'Ohio', value: 'Ohio'},
+    {key:'Oklahoma', text: 'Oklahoma', value: 'Oklahoma'},
+    {key:'Oregon', text: 'Oregon', value: 'Oregon'},
+    {key:'Pennsylvania', text: 'Pennsylvania', value: 'Pennsylvania'},
+    {key:'Rhode Island', text: 'Rhode Island', value: 'Rhode Island'},
+    {key:'South Carolina', text: 'South Carolina', value: 'South Carolina'},
+    {key:'South Dakota', text: 'South Dakota', value: 'South Dakota'},
+    {key:'Tennessee', text: 'Tennessee', value: 'Tennessee'},
+    {key:'Texas', text: 'Texas', value: 'Texas'},
+    {key:'Utah', text: 'Utah', value: 'Utah'},
+    {key:'Vermont', text: 'Vermont', value: 'Vermont'},
+    {key:'Virginia', text: 'Virginia', value: 'Virginia'},
+    {key:'Washington', text: 'Washington', value: 'Washington'},
+    {key:'West Virginia', text: 'West Virginia', value: 'West Virginia'},
+    {key:'Wisconsin', text: 'Wisconsin', value: 'Wisconsin'},
+    {key:'Wyoming', text: 'Wyoming', value: 'Wyoming'}                  
 ]
 
 const months = [
@@ -63,39 +116,106 @@ const years = [
     { key: 1901, text: 1901 ,value: 1901 },
 ]
 
-const RegistrationStatusPage = () => (
-    <Container className="container">
-        <Form className="form">
-            <Form.Group >
-                <Form.Input fluid label='First name' placeholder='First name' width={6}  />
-                <Form.Input fluid label='Middle Initial' placeholder='Middle Initial' width={2}/>
-                <Form.Input fluid label='Last name' placeholder='Last name' width={6}/>
-                <Form.Select className="gender" fluid options={options} placeholder='Gender'  width={2}/>
-            </Form.Group>
-           
-            <Form.Group widths=''>
-                <Form.Input fluid label='Street Address' placeholder='Street Address' width={16}  />
-                <Form.Input fluid label='Apt/Unit#' placeholder='Apt/Unit#' width={2}/>
-            </Form.Group>
 
-            <Form.Group >
-                <Form.Input fluid label='City' placeholder='City' width={6}  />
-                <label htmlFor="state"><strong>State</strong></label>
-                <StateDropdown />
-                <Form.Input fluid label='Zip' placeholder='Zip' width={2}/>
-            </Form.Group>
 
-            <label htmlFor=""><strong>Birthdate</strong></label>
-            <Form.Group className >
-                <Form.Select className="Month" fluid  options={months} placeholder='Month'  width={2}/>
-                <Form.Select className="Date" fluid options={dates} placeholder='Date'  width={2}/>
-                <Form.Select className="Year" fluid options={years} placeholder='Year'  width={2}/>
-            </Form.Group>
-        </Form>   
-    </Container>
+class RegistrationStatusPage extends React.Component{
 
+    constructor(){
+        super();
+    
+    this.state = {
+        FirstName: null,
+        MiddleInitial: null,
+        LastName: null,
+        Gender: null,
+        StreetAddress: null,
+        Apt: null,
+        City: null,
+        State: null,
+        Zip: null,
+        Month: null,
+        Date: null,
+        Year: null
+    }
+}
+
+    onSubmit = (e) => {
+        e.preventDefault()
+        console.log('clicked')
+    }
+
+    onChange = (e) => {
+        this.setState({ [e.target.name] : e.target.value })
+    }
+
+    genderChange = (e) => {
+        const gender = e.target.innerHTML.replace(`<span class="text">`,"").replace(`</span>`,"")
+        this.setState({ Gender : gender})
+    }
+
+    stateChange = (e) => {
+        const state = e.target.innerHTML.replace(`<span class="text">`,"").replace(`</span>`,"")
+        console.log(state)
+        this.setState({ State : state})
+    }
+
+    monthChange = (e) => {
+        const month = e.target.innerHTML.replace(`<span class="text">`,"").replace(`</span>`,"")
+        this.setState({ Month : month})
+    }
+
+    dateChange = (e) => {
+        const date = e.target.innerHTML.replace(`<span class="text">`,"").replace(`</span>`,"")
+        this.setState({ Date : date})
+    }
+
+    yearChange = (e) => {
+        const year = e.target.innerHTML.replace(`<span class="text">`,"").replace(`</span>`,"")
+        this.setState({ Year : year})
+    }
+
+    render(){
+        return(
+            <Container className="container">
+                <Form className="form" onSubmit={this.onSubmit}>
+                    <Form.Group >
+                    {console.log(this.state)}
+                        <Form.Input fluid label='First Name' placeholder='First name' width={7} name="FirstName" onChange={this.onChange}  />
+                        <Form.Input fluid label='Middle Initial' placeholder='Middle Initial' name="MiddleInitial" width={2} onChange={this.onChange}/>
+                        <Form.Input fluid label='Last Name' placeholder='Last name' name="LastName" width={7} onChange={this.onChange}/>
+                    </Form.Group>
+                
+                    <Form.Group >
+                        <Form.Input fluid label='Street Address' placeholder='Street Address' width={16} name="StreetAddress" onChange={this.onChange} />
+                        <Form.Input fluid label='Apt/Unit#' placeholder='Apt/Unit#' width={2} name="Apt" onChange={this.onChange}/>
+                    </Form.Group>
+
+                    <Form.Group >
+                        <Form.Input fluid label='City' placeholder='City' width={8} name="City" onChange={this.onChange} />
+                        <label htmlFor=""><strong>Birthdate</strong></label>
+                        <br></br>
+                        <Form.Select className="State" fluid  options={states} placeholder='State'  width={2} name="State" onChange={this.stateChange}/>
+                        <Form.Input fluid label='Zip' placeholder='Zip' width={3} name="Zip" onChange={this.onChange}/>
+                    </Form.Group>
+
+                    <label htmlFor=""><strong>Birthdate</strong></label>
+                    <Form.Group  >
+                        <Form.Select className="Month" fluid  options={months} placeholder='Month'  width={2} name="Month" onChange={this.monthChange}/>
+                        <Form.Select className="Date" fluid options={dates} placeholder='Date'  width={2} name="Date" onChange={this.dateChange}/>
+                        <Form.Select className="Year" fluid options={years} placeholder='Year'  width={2} name="Year" onChange={this.yearChange}/>
+                        <Form.Select className="Gender" label="" fluid  options={options} placeholder='Gender'  width={2} name="Gender" onChange={this.genderChange}/>
+                    </Form.Group>
+
+                    <button className="ui inverted green button">Submit Form</button>
+                    
+                    </Form>   
+            </Container>
+
+        )
+    }
+}
+    
  
-)
 
 export default RegistrationStatusPage
 
