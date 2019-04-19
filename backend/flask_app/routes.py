@@ -45,6 +45,16 @@ def homepage():
     user = Account.one_from_pk(decoded_token['user'])
     return jsonify({'status': 'success', 'user': user.username}) 
 
+        console.log(FirstName, LastName, formattedGender, City, ZipCode, formattedBirthdate)
+
+@app.route('/search/<FirstName>/<LastName>/<formattedGender>/<formattedBirthdate>/<ZipCode>', methods=['GET'])
+def search(FirstName, LastName, formattedGender, formattedBirthdate, ZipCode):
+    voter = Voters.get_voter(FirstName, LastName, formattedGender, formattedBirthdate, City, Zipcode)
+    if voter:
+        return jsonify({'voter': f'{voter.firstName} {voter.LastName}')
+    else:
+        return jsonify({'voter': 'Cannot be found in Database' })
+
 
 # @app.route('/user/<id>')
 # def user(id):

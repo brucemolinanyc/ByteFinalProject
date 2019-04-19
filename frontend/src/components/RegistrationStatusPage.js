@@ -17,16 +17,29 @@ class RegistrationStatusPage extends React.Component{
         Apt: null,
         City: null,
         State: null,
-        Zip: null,
+        ZipCode: null,
         Month: null,
-        Date: null,
+        Day: null,
         Year: null
     }
 }
 
     onSubmit = (e) => {
         e.preventDefault()
-        console.log('clicked')
+        const FirstName = this.state.FirstName.toUpperCase()
+        const LastName = this.state.LastName.toUpperCase()
+        const Gender = this.state.Gender.toUpperCase()
+        // const StreetAddress = this.state.StreetAddress.toUpperCase()
+        // const Apt = this.state.Apt.toUpperCase()
+        const City = this.state.City.toUpperCase()
+        const ZipCode = this.state.ZipCode
+        const Month= this.state.Month
+        const Day = this.state.Day
+        const Year = this.state.Year
+
+        const formattedBirthdate = `${Year}${Month}${Day}`
+        const formattedGender = Gender === "MALE" ? "M" : "F"
+        console.log(FirstName, LastName, formattedGender, City, ZipCode, formattedBirthdate)
     }
 
     onChange = (e) => {
@@ -40,7 +53,6 @@ class RegistrationStatusPage extends React.Component{
 
     stateChange = (e) => {
         const state = e.target.innerHTML.replace(`<span class="text">`,"").replace(`</span>`,"")
-        console.log(state)
         this.setState({ State : state})
     }
 
@@ -49,9 +61,9 @@ class RegistrationStatusPage extends React.Component{
         this.setState({ Month : month})
     }
 
-    dateChange = (e) => {
-        const date = e.target.innerHTML.replace(`<span class="text">`,"").replace(`</span>`,"")
-        this.setState({ Date : date})
+    dayChange = (e) => {
+        const day = e.target.innerHTML.replace(`<span class="text">`,"").replace(`</span>`,"")
+        this.setState({ Day : day})
     }
 
     yearChange = (e) => {
@@ -66,9 +78,8 @@ class RegistrationStatusPage extends React.Component{
 
                 <Form className="form" onSubmit={this.onSubmit}>
                     <Form.Group widths='equal' >
-                    {console.log(this.state)}
                         <Form.Input fluid label='First Name' placeholder='First name' width={7} name="FirstName" onChange={this.onChange}  />
-                        <Form.Input fluid label='Middle Initial' placeholder='Middle Initial' name="MiddleInitial" width={2} onChange={this.onChange}/>
+                        <Form.Input fluid label='Middle Initial' placeholder='M.I.' name="MiddleInitial" width={2} onChange={this.onChange}/>
                         <Form.Input fluid label='Last Name' placeholder='Last name' name="LastName" width={7} onChange={this.onChange}/>
                     </Form.Group>
                 
@@ -82,13 +93,13 @@ class RegistrationStatusPage extends React.Component{
                         <label htmlFor=""><strong>State</strong></label>
                         <br></br>
                         <Form.Select className="State" fluid  options={states} placeholder='State'  width={2} name="State" onChange={this.stateChange}/>
-                        <Form.Input fluid label='Zip' placeholder='Zip' width={3} name="Zip" onChange={this.onChange}/>
+                        <Form.Input fluid label='ZipCode' placeholder='ZipCode' width={3} name="ZipCode" onChange={this.onChange}/>
                     </Form.Group>
 
                     <label htmlFor=""><strong>Birthdate</strong></label>
                     <Form.Group >
                         <Form.Select className="Month" fluid  options={months} placeholder='Month'  width={2} name="Month" onChange={this.monthChange}/>
-                        <Form.Select className="Date" fluid options={dates} placeholder='Date'  width={2} name="Date" onChange={this.dateChange}/>
+                        <Form.Select className="Day" fluid options={dates} placeholder='Day'  width={2} name="Day" onChange={this.dayChange}/>
                         <Form.Select className="Year" fluid options={years} placeholder='Year'  width={2} name="Year" onChange={this.yearChange}/>
                         <Form.Select className="Gender" fluid  options={options} placeholder='Gender'  width={2} name="Gender" onChange={this.genderChange}/>                    
                     </Form.Group>

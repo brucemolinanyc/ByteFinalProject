@@ -63,3 +63,16 @@ class ORM:
         if not result:
             raise KeyError("no such pk: {}".format(pk))
         return result
+
+    @classmethod
+    def select_many_where(cls, whereclause="", values=""):
+        with sqlite3.connect(cls.dbpath) as conn:
+            conn.row_factory = sqlite3.Row
+            curs = conn.cursor()
+
+            SQL = """ SELECT * FROM {tablename} {whereclause}; """.format(
+                tablename=cls.tablename, whereclause=whereclause)
+
+            curs.execute(SQL, values)
+            rows = curs.fetchall()
+            return [cls(**row) for row in rows]
