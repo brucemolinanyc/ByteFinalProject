@@ -2,9 +2,37 @@ import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
-const RegistrationPage
- = () => (
-  <div className='login-form'>
+
+class RegistrationPage extends React.Component{
+  constructor(){
+    super()
+
+    this.state = {
+      loggedIn: false 
+    }
+  }
+
+  onFormSubmit = (e) => {
+    e.preventDefault()
+
+    const username = document.getElementById('username').value
+    const password = document.getElementById('password').value
+    const confirm = document.getElementById('confirm_password').value
+
+    fetch('http://127.0.0.1:5000/create', {
+      method: 'post',
+      mode: "cors",
+      headers: {"Content-Type": "application/json, Access-Control-Allow-Origin"},
+      body: JSON.stringify({username: username, password_hash: password})
+  }).then(response => response.json())
+    .then(data => console.log(data))
+  // .then(data => window.api_key = data['api_key'])
+  // .then(this.setState({loggedIn: true }))   
+  }
+
+  render(){
+    return(
+      <div className='registration-form'>
     {/*
       Heads up! The styles below are necessary for the correct render of this example.
       You can do same with CSS, the main idea is that all the elements up to the `Grid`
@@ -13,7 +41,7 @@ const RegistrationPage
     <style>{`
       body > div,
       body > div > div,
-      body > div > div > div.login-form {
+      body > div > div > div.registration-form {
         height: 100%;
       }
     `}
@@ -23,19 +51,28 @@ const RegistrationPage
         <Header as='h2' color='red' textAlign='center'>
           <Image src='/logo.png' /> Create an account
         </Header>
-        <Form size='large'>
+        <Form size='large' onSubmit={this.onFormSubmit}>
           <Segment stacked>
-            <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+            <Form.Input fluid icon='user' iconPosition='left' placeholder='username' id='username' />
             <Form.Input
               fluid
               icon='lock'
               iconPosition='left'
               placeholder='Password'
               type='password'
+              id='password'
+            />
+            <Form.Input
+              fluid
+              icon='lock'
+              iconPosition='left'
+              placeholder='Confirm Password'
+              type='password'
+              id='confirm_password'
             />
 
             <Button color='red' fluid size='large'>
-              Login
+              Register
             </Button>
           </Segment>
         </Form>
@@ -45,6 +82,11 @@ const RegistrationPage
       </Grid.Column>
     </Grid>
   </div>
-)
+    )
+  }
+}
+  
+
+
 
 export default RegistrationPage

@@ -1,6 +1,6 @@
 const options = [
-    { key: 'm', text: 'Male', value: 'male' },
-    { key: 'f', text: 'Female', value: 'female' }
+    { key: 'm', text: 'Male', value: 'M' },
+    { key: 'f', text: 'Female', value: 'F' }
   ]
   
 const states = [                       

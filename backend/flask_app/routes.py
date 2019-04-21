@@ -2,6 +2,7 @@ from flask import jsonify, abort, request
 from flask_app import app
 from app.account import Account
 from app.orm import ORM
+from app.voters import Voters
 from app.util import encodeAuthToken, decodeAuthToken
 import jwt
 import datetime
@@ -45,15 +46,14 @@ def homepage():
     user = Account.one_from_pk(decoded_token['user'])
     return jsonify({'status': 'success', 'user': user.username}) 
 
-        console.log(FirstName, LastName, formattedGender, City, ZipCode, formattedBirthdate)
-
 @app.route('/search/<FirstName>/<LastName>/<formattedGender>/<formattedBirthdate>/<ZipCode>', methods=['GET'])
 def search(FirstName, LastName, formattedGender, formattedBirthdate, ZipCode):
-    voter = Voters.get_voter(FirstName, LastName, formattedGender, formattedBirthdate, City, Zipcode)
+    voter = Voters.get_voter(FirstName, LastName, formattedGender, formattedBirthdate, ZipCode)
     if voter:
-        return jsonify({'voter': f'{voter.firstName} {voter.LastName}')
+        voterName = f'{voter.FirstName} {voter.LastName}'
+        return jsonify({'voter': voterName, 'truthy': True})
     else:
-        return jsonify({'voter': 'Cannot be found in Database' })
+        return jsonify({'voter': False, 'truthy': False })
 
 
 # @app.route('/user/<id>')

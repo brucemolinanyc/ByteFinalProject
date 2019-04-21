@@ -13,12 +13,13 @@
     padding: 22px;
 }
 
-.GenderGroup .Gender{
+.registrationResult{
+    padding-top: 20px;
 }
 
 .formButton {
     padding-top: 10px;
-    height: 80px;
+    height: 70px;
     display: flex;
     justify-content: center;
     color: red;
