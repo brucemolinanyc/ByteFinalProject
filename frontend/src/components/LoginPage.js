@@ -1,6 +1,9 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
+import { withRouter } from 'react-router';
+
+
 
 class LoginPage extends React.Component{
   constructor(){
@@ -13,6 +16,7 @@ class LoginPage extends React.Component{
 
   onFormLogin = (e) => {
     e.preventDefault()
+    const { router } = this.props;
     const username = document.getElementById('username').value
     const password = document.getElementById('password').value
 
@@ -22,12 +26,17 @@ class LoginPage extends React.Component{
       headers: {"Content-Type": "application/json, Access-Control-Allow-Origin"},
       body: JSON.stringify({username: username, password: password})
   }).then(response => response.json())
-    .then(data => console.log(data))
-  // .then(data => window.api_key = data['api_key'])
-  // .then(this.setState({loggedIn: true }))   
+    .then(data => {
+    localStorage.setItem('token', data['auth_token'])
+    
+    if(!!localStorage.token) {
+        this.props.history.push('/home')
+      }
+    })
   }
 
   render(){
+    
     return(
       <div className='login-form'>
     {/*

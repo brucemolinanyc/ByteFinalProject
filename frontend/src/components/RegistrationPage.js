@@ -1,6 +1,7 @@
-import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import {Link, Redirect} from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 
 class RegistrationPage extends React.Component{
@@ -25,12 +26,17 @@ class RegistrationPage extends React.Component{
       headers: {"Content-Type": "application/json, Access-Control-Allow-Origin"},
       body: JSON.stringify({username: username, password_hash: password})
   }).then(response => response.json())
-    .then(data => console.log(data))
-  // .then(data => window.api_key = data['api_key'])
-  // .then(this.setState({loggedIn: true }))   
-  }
+    .then(data => {
+    localStorage.setItem('token', data['auth_token'])
+
+    if(!!localStorage.token) {
+      this.props.history.push('/home')
+    }
+  })
+}
 
   render(){
+    
     return(
       <div className='registration-form'>
     {/*

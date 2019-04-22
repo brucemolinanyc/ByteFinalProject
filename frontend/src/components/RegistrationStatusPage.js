@@ -1,9 +1,11 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Form, Container, Button} from 'semantic-ui-react';
 import {options, states, months, dates, years} from './Utilities';
 import './RegistrationStatusPage.css';
 import FormSuccess from './FormSuccess'
 import FormFailure from './FormFailure';
+import Header from './Header'
  
 class RegistrationStatusPage extends React.Component{
 
@@ -82,10 +84,15 @@ class RegistrationStatusPage extends React.Component{
     }
 
     render(){
+        // if (!localStorage.token){
+        //     return <Redirect to="/" />
+        // }
+
         const result = (this.state.Voter !== '' && this.state.Voter === true) ?  <FormSuccess/> :  <FormFailure/>
     
         return(
             <Container className="container">
+            <Header/>
                 <div className="ui huge header centered">Check Your Voter Registration Status</div>
 
                 <Form className="form" onSubmit={this.onSubmit}>

@@ -24,7 +24,7 @@ def create():
     account.save()
     token = encodeAuthToken(account.pk)
     
-    return jsonify({'status': 'success', 'auth-token': str(token)}) 
+    return jsonify({'status': 'success', 'auth_token': str(token)}) 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -36,7 +36,8 @@ def login():
         return jsonify(UNAUTHORIZED), 401
     
     token = encodeAuthToken(account.pk)
-    return jsonify({'status': 'success', 'auth-token': str(token)}) 
+  
+    return jsonify({'status': 'success', 'auth_token': str(token)}) 
 
 @app.route('/home', methods=['GET'])
 def homepage():

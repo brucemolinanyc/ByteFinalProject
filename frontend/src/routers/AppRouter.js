@@ -11,9 +11,6 @@ import RegistrationStatusPage from '../components/RegistrationStatusPage';
 const AppRouter = () => (
   <BrowserRouter>
     <div>
-      <div>
-        <Header />
-      </div>
       <Switch>
         <Route path="/" component={LoginPage} exact={true} />
         <Route path="/home" component={HomePage} />
@@ -27,3 +24,7 @@ const AppRouter = () => (
 );
 
 export default AppRouter;
+
+ // <div>
+      //   <Header/>
+      // </div>

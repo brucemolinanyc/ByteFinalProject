@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Header from './Header'
 
 class ProfilePage extends React.Component{
 
@@ -7,7 +7,11 @@ class ProfilePage extends React.Component{
 
     render(){
         return(
-            <div>This is the ProfilePage</div>
+            <div>
+                <Header/>
+
+                This is the ProfilePage
+            </div>
         )
     }
 
