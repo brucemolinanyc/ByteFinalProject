@@ -3,7 +3,6 @@ import React from 'react';
 
 const Header = () => (
   <div className="ui huge menu">
-    <a className="item" href="/"  exact="true">Login Placeholder </a>
     <a className="item" href="/home"  exact="true">Home</a>
     <a className="item" href="/profile" exact="true" >Profile</a>
     <a className="item" href="/vote" exact="true">Check Voter Registration</a>
@@ -20,3 +19,4 @@ const Header = () => (
 );
 export default Header;
 
+// <a className="item" href="/"  exact="true">Login Placeholder </a>

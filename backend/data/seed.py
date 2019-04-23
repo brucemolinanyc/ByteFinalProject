@@ -95,6 +95,9 @@ def seed(dbpath=DBPATH, csvpath=CSVPATH, csvfiles=CSVFILES):
                                 
                         cursor.execute(SQL, data)
 
+                        # SQL = """SELECT * FROM voters ORDER BY FirstName"""
+                        # cursor.execute(SQL, data)
+                        # need to split and sort the file
 
 
 if __name__ == "__main__":

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { Form, Container, Button} from 'semantic-ui-react';
 import {options, states, months, dates, years} from './Utilities';
 import './RegistrationStatusPage.css';
@@ -51,7 +50,15 @@ class RegistrationStatusPage extends React.Component{
             headers: {"Content-Type": "application/json"},
         })
         .then(response => response.json())
-        .then(data => this.setState({Voter: data.truthy}))
+        .then(data => {
+            console.log(data)
+            console.log(data.truthy)
+            if (data.truthy === true){
+                this.setState({Voter: true})
+            } else{
+                this.setState({Voter: false})
+            }
+        })
     }
 
     onChange = (e) => {
@@ -88,49 +95,53 @@ class RegistrationStatusPage extends React.Component{
         //     return <Redirect to="/" />
         // }
 
-        const result = (this.state.Voter !== '' && this.state.Voter === true) ?  <FormSuccess/> :  <FormFailure/>
+        const result = (this.state.Voter !== '' && this.state.Voter === true) ?  <FormSuccess/> : <FormFailure/>
     
         return(
-            <Container className="container">
-            <Header/>
-                <div className="ui huge header centered">Check Your Voter Registration Status</div>
+            <div>
+            <div>
+                <Header/>
+            </div>
+                <Container className="container">
+                    <div className="ui huge header centered">Check Your Voter Registration Status</div>
 
-                <Form className="form" onSubmit={this.onSubmit}>
-                    <Form.Group widths='equal' >
-                        <Form.Input required fluid label='First Name' placeholder='First name' width={7} name="FirstName" onChange={this.onChange}  />
-                        <Form.Input fluid label='Middle Initial' placeholder='M.I.' name="MiddleInitial" width={2} onChange={this.onChange}/>
-                        <Form.Input required fluid label='Last Name' placeholder='Last name' name="LastName" width={7} onChange={this.onChange}/>
-                    </Form.Group>
-                
-                    <Form.Group >
-                        <Form.Input required fluid label='Street Address' placeholder='Street Address' width={16} name="StreetAddress" onChange={this.onChange} />
-                        <Form.Input fluid label='Apt/Unit#' placeholder='Apt/Unit#' width={2} name="Apt" onChange={this.onChange}/>
-                    </Form.Group>
+                    <Form className="form" onSubmit={this.onSubmit}>
+                        <Form.Group widths='equal' >
+                            <Form.Input required fluid label='First Name' placeholder='First name' width={7} name="FirstName" onChange={this.onChange}  />
+                            <Form.Input fluid label='Middle Initial' placeholder='M.I.' name="MiddleInitial" width={2} onChange={this.onChange}/>
+                            <Form.Input required fluid label='Last Name' placeholder='Last name' name="LastName" width={7} onChange={this.onChange}/>
+                        </Form.Group>
+                    
+                        <Form.Group >
+                            <Form.Input required fluid label='Street Address' placeholder='Street Address' width={16} name="StreetAddress" onChange={this.onChange} />
+                            <Form.Input fluid label='Apt/Unit#' placeholder='Apt/Unit#' width={2} name="Apt" onChange={this.onChange}/>
+                        </Form.Group>
 
-                    <Form.Group className="FormGroup" widths='equal'>
-                        <Form.Input required fluid label='City' placeholder='City' width={8} name="City" onChange={this.onChange} />
-                        <label htmlFor=""><strong>State</strong></label>
-                        <br></br>
-                        <Form.Select required className="State" fluid  options={states} placeholder='State'  width={2} name="State" onChange={this.stateChange}/>
-                        <Form.Input required fluid label='ZipCode' placeholder='ZipCode' width={3} name="ZipCode" onChange={this.onChange}/>
-                    </Form.Group>
+                        <Form.Group className="FormGroup" widths='equal'>
+                            <Form.Input required fluid label='City' placeholder='City' width={8} name="City" onChange={this.onChange} />
+                            <label htmlFor=""><strong>State</strong></label>
+                            <br></br>
+                            <Form.Select required className="State" fluid  options={states} placeholder='State'  width={2} name="State" onChange={this.stateChange}/>
+                            <Form.Input required fluid label='ZipCode' placeholder='ZipCode' width={3} name="ZipCode" onChange={this.onChange}/>
+                        </Form.Group>
 
-                    <label htmlFor=""><strong>Birthdate</strong></label>
-                    <Form.Group required>
-                        <Form.Select required className="Month" fluid  options={months} placeholder='Month'  width={2} name="Month" onChange={this.monthChange}/>
-                        <Form.Select required className="Day" fluid options={dates} placeholder='Day'  width={2} name="Day" onChange={this.dayChange}/>
-                        <Form.Select required className="Year" fluid options={years} placeholder='Year'  width={2} name="Year" onChange={this.yearChange}/>
-                        <Form.Select required className="Gender" fluid  options={options} placeholder='Gender'  width={2} name="Gender" onChange={this.genderChange} />                    
-                    </Form.Group>
+                        <label htmlFor=""><strong>Birthdate</strong></label>
+                        <Form.Group required>
+                            <Form.Select required className="Month" fluid  options={months} placeholder='Month'  width={2} name="Month" onChange={this.monthChange}/>
+                            <Form.Select required className="Day" fluid options={dates} placeholder='Day'  width={2} name="Day" onChange={this.dayChange}/>
+                            <Form.Select required className="Year" fluid options={years} placeholder='Year'  width={2} name="Year" onChange={this.yearChange}/>
+                            <Form.Select required className="Gender" fluid  options={options} placeholder='Gender'  width={2} name="Gender" onChange={this.genderChange} />                    
+                        </Form.Group>
 
-                    <Form.Field className="formButton" color="red" control={Button}> Look up my Status </Form.Field>
-                </Form>   
-                
-                <div className="registrationResult"> 
-                    {this.state.Voter && result || this.state.Voter === false && result}
-                </div>
-                
-            </Container>
+                        <Form.Field className="formButton" color="red" control={Button}> Look up my Status </Form.Field>
+                    </Form>   
+                    
+                    <div className="registrationResult"> 
+                        {(this.state.Voter && result) || (this.state.Voter === false && result)}
+                    </div>
+                    
+                </Container>
+            </div>
 
         )
     }

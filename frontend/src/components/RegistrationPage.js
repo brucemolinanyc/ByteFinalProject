@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
-import {Link, Redirect} from 'react-router-dom';
-import { withRouter } from 'react-router';
+import {Link} from 'react-router-dom';
 
 
 class RegistrationPage extends React.Component{

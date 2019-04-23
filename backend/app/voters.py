@@ -57,9 +57,12 @@ class Voters(ORM):
     def get_voter(cls, FirstName, LastName, formattedGender, formattedBirthdate, ZipCode):
         voters = Voters.select_many_where("WHERE FirstName=? AND LastName=? AND Gender=?", (FirstName, LastName, formattedGender) )
         voter = list(filter(lambda x : (x.Zip5 == ZipCode) and (x.DOB == formattedBirthdate), voters))
+        print(voter)
+        
         if voter:
             return voter[0]
-        return False 
+        else:
+            return False 
         # possibly turn the filter into an or statement
 
 
