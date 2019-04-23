@@ -51,8 +51,6 @@ class RegistrationStatusPage extends React.Component{
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
-            console.log(data.truthy)
             if (data.truthy === true){
                 this.setState({Voter: true})
             } else{

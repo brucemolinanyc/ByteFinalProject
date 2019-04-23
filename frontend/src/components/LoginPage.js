@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import FormFailure from './FormFailure';
 // import { withRouter } from 'react-router';
 
 
@@ -10,7 +11,8 @@ class LoginPage extends React.Component{
     super()
     
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      loginError: null
     }
   }
 
@@ -26,7 +28,11 @@ class LoginPage extends React.Component{
       body: JSON.stringify({username: username, password: password})
   }).then(response => response.json())
     .then(data => {
-    localStorage.setItem('token', data['auth_token'])
+      if (data.auth_token){
+        localStorage.setItem('token', data['auth_token'])
+      } else {
+        this.setState({loginError: false})
+    }
     
     if(!!localStorage.token) {
         this.props.history.push('/home')
@@ -51,7 +57,15 @@ class LoginPage extends React.Component{
       }
     `}
     </style>
+    <div> 
+    <div>
+    { this.state.loginError === false && <FormFailure/> }
+    </div>
+
+    
+    </div>
     <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+   
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='teal' textAlign='center'>
           <Image src='/logo.png' /> Log-in to your account
@@ -79,6 +93,7 @@ class LoginPage extends React.Component{
       </Grid.Column>
     </Grid>
   </div>
+  
     )
   }
 

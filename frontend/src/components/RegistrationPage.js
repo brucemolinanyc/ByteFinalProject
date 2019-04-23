@@ -8,7 +8,7 @@ class RegistrationPage extends React.Component{
     super()
 
     this.state = {
-      loggedIn: false 
+      loggedIn: false,
     }
   }
 
@@ -19,20 +19,24 @@ class RegistrationPage extends React.Component{
     const password = document.getElementById('password').value
     const confirm = document.getElementById('confirm_password').value
 
-    fetch('http://127.0.0.1:5000/create', {
-      method: 'post',
-      mode: "cors",
-      headers: {"Content-Type": "application/json, Access-Control-Allow-Origin"},
-      body: JSON.stringify({username: username, password_hash: password})
-  }).then(response => response.json())
-    .then(data => {
-    localStorage.setItem('token', data['auth_token'])
-
-    if(!!localStorage.token) {
-      this.props.history.push('/home')
+    if(password === confirm){
+        fetch('http://127.0.0.1:5000/create', {
+          method: 'post',
+          mode: "cors",
+          headers: {"Content-Type": "application/json, Access-Control-Allow-Origin"},
+          body: JSON.stringify({username: username, password_hash: password})
+      }).then(response => response.json())
+        .then(data => {
+        localStorage.setItem('token', data['auth_token'])
+    
+        if(!!localStorage.token) {
+          this.props.history.push('/home')
+        }
+      })
     }
-  })
-}
+  }
+
+   
 
   render(){
     
