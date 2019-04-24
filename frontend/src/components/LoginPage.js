@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import {Link} from 'react-router-dom';
-import FormFailure from './FormFailure';
+import LoginFailure from './LoginFailure';
 // import { withRouter } from 'react-router';
 
 
@@ -59,7 +59,7 @@ class LoginPage extends React.Component{
     </style>
     <div> 
     <div>
-    { this.state.loginError === false && <FormFailure/> }
+    { this.state.loginError === false && <LoginFailure/> }
     </div>
 
     
