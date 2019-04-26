@@ -3,7 +3,7 @@ import requests
 import json 
 
 api_key_votesmart = 'e6c9d393d6cf259456bcb71e26922bcd'
-votesmart_endpoint = 'http://api.votesmart.org/{}?o=JSON&key={}&{}'.format(CandidateBio.getBio, api_key, 9490 )
+votesmart_endpoint = 'http://api.votesmart.org/'
 # http://api.votesmart.org/CandidateBio.getBio?key=<your_key>&candidateId=9490
 
 api_key_google_civic_data = 'AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI'

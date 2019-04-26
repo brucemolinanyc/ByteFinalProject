@@ -1,0 +1,22 @@
+.home_container{
+    max-height: 5000px
+}
+
+.header_class{
+    width: 100%;
+    position: fixed;
+}
+.home_container .top_segment{
+    font-size: 20px;
+    background-color:rgb(244, 244, 244);
+    height: 600px;
+}
+
+
+
+.home_container .middle_segment{
+    background-color: rgb(0, 0, 0);
+    font-size: 20px;
+    height: 600px;
+
+}
