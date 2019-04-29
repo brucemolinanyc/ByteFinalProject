@@ -38,7 +38,7 @@ class Header extends React.Component{
 
     <div className="right menu">
       <div className="item" width={4}>
-        <p>Welcome!  <strong className="strong">{this.state.username }</strong></p>
+        <p>Welcome! &nbsp;&nbsp;<strong className="strong">{this.state.username }</strong></p>
       </div>
 
     <div className="right menu item">

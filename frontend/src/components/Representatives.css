@@ -1,0 +1,28 @@
+ 
+
+.reps_container  {
+   border: 1px solid black;
+   font-weight: bold;
+   padding: 20px;
+   text-align: center;
+   width: 85% ;
+   margin: auto;
+}
+
+.reps_container .input_div{
+   display: inline-block;
+}
+
+.reps_container .input_div h1{
+   display: inline-block;
+   font-size: 45px;
+}
+
+.checkboxes{
+   padding: 15px;
+}
+
+.checkboxes .checkbox .inputs{
+   padding-right: 15px;
+}
+

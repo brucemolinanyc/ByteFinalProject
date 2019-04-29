@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import Header from './Header';
 // import { Form, Container, Button} from 'semantic-ui-react';
 import './HomePage.css'
+import './Header.css'
+import Representatives from './Representatives';
 
 class HomePage extends React.Component{
 
@@ -18,13 +20,16 @@ class HomePage extends React.Component{
 
         return(
             <div>
-                <div className="header_class">
-                    <Header/>
-                </div>
+            
+            <div className="header_class">
+                <Header/>
+            </div>
             
             <div className="home_container">
                 <div className="top_segment">
-                    <p className="text">testasfdafsgasfdfnlansfdsan</p>
+                    <p>top segment</p>
+                    <Representatives/>
+
                 </div>
                 <div className="middle_segment">
                     <div className="text">
