@@ -7,10 +7,21 @@ import jwt_decode from 'jwt-decode';
 
 class Header extends React.Component{
  
+  state = {
+    username: ''
+  }
 
   componentDidMount = () => {
     const token = localStorage.getItem('token')
-    console.log(token)
+    var decoded = jwt_decode(token)
+
+    fetch(`http://localhost:5000/user/${decoded.user}`,{
+            method: 'get',
+            mode: 'cors',
+            headers: {"Content-Type": "application/json"},
+        })
+        .then(response => response.json())
+        .then(data => this.setState({username: data.user.toUpperCase()}))
   }
 
   onClick = () => {
@@ -26,8 +37,8 @@ class Header extends React.Component{
     <a className="red item" href="/profile" exact="true">Profile</a>
 
     <div className="right menu">
-      <div className="item">
-        Welcome!
+      <div className="item" width={4}>
+        <p>Welcome!  <strong className="strong">{this.state.username }</strong></p>
       </div>
 
     <div className="right menu item">

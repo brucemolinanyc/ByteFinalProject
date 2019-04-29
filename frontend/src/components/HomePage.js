@@ -6,8 +6,11 @@ import './HomePage.css'
 
 class HomePage extends React.Component{
 
+    state = {
 
-
+    }
+ 
+   
     render(){
         // if (!localStorage.token){
         //     return <Redirect to="/" />
@@ -21,11 +24,14 @@ class HomePage extends React.Component{
             
             <div className="home_container">
                 <div className="top_segment">
+                    <p className="text">testasfdafsgasfdfnlansfdsan</p>
+                </div>
+                <div className="middle_segment">
                     <div className="text">
                         test of this fasfsdafsaddas
                     </div>
                 </div>
-                <div className="middle_segment">
+                <div className="lower_segment">
                     <div className="text">
                         test of this fasfsdafsaddas
                     </div>

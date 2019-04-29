@@ -57,7 +57,7 @@ def search(FirstName, LastName, formattedGender, formattedBirthdate, ZipCode):
         return jsonify({'voter': False, 'truthy': False })
 
 
-# @app.route('/user/<id>')
-# def user(id):
-#         user = Account.one_from_pk(id)
-#         return jsonify({"user": user.username})
+@app.route('/user/<id>')
+def user(id):
+        user = Account.one_from_pk(id)
+        return jsonify({"user": user.username})

@@ -10,12 +10,25 @@
     font-size: 20px;
     background-color:rgb(244, 244, 244);
     height: 600px;
+} 
+
+.home_container .top_segment .text{
+    color: orange;
 }
+
+
 
 
 
 .home_container .middle_segment{
     background-color: rgb(0, 0, 0);
+    font-size: 20px;
+    height: 600px;
+
+}
+
+.home_container .lower_segment{
+    background-color: rgb(117, 109, 162);
     font-size: 20px;
     height: 600px;
 
