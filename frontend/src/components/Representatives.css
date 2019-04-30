@@ -1,16 +1,17 @@
  
 
 .reps_container  {
-   border: 1px solid black;
    font-weight: bold;
    padding: 20px;
    text-align: center;
    width: 85% ;
    margin: auto;
+   padding-top: 100px
 }
 
 .reps_container .input_div{
    display: inline-block;
+   margin-bottom: 30px;
 }
 
 .reps_container .input_div h1{
@@ -18,11 +19,11 @@
    font-size: 45px;
 }
 
-.checkboxes{
+/* .checkboxes{
    padding: 15px;
 }
 
 .checkboxes .checkbox .inputs{
    padding-right: 15px;
-}
+} */
 

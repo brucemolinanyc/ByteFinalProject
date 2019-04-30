@@ -1,4 +1,5 @@
-from flask import jsonify, abort, request
+from flask import jsonify, abort, request, make_response, current_app
+import requests
 from flask_app import app
 from app.account import Account
 from app.orm import ORM
@@ -61,3 +62,17 @@ def search(FirstName, LastName, formattedGender, formattedBirthdate, ZipCode):
 def user(id):
         user = Account.one_from_pk(id)
         return jsonify({"user": user.username})
+
+
+@app.route('/google/<city>/<state>/<zipcode>')
+def representatives(city, state, zipcode):
+    print(city)
+    print(state)
+    print(zipcode)
+    response = requests.get('https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=officials&address='+ str(city) + '20%' + 'str(state)' + '%20' + str(zipcode) )
+    data = response.json()
+    return jsonify(data)
+    # https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=officials&address=whitestone%20%ny%2011357
+    # https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=officials&address={}20%{}%20{}'.format(city,state,zipcode), headers={"Accept": "*/*","Access-Control-Allow-Origin" : "*", "X-Content-Type-Options": "nosniff"}
+    # https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=officials&address=' + city + "20%" + state + "%20" + zipcode, headers={'Content-Type': 'application/json','Access-Control-Allow-Origin': '*'}
+    # https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=officials&address=' + city + "20%" + state + "%20" + zipcode
