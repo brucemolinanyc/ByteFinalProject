@@ -1,21 +1,30 @@
-import React from 'react'
-import { Card, Icon, Image} from 'semantic-ui-react'
+import React from 'react';
+import { Card, Icon, Image} from 'semantic-ui-react';
+import './RepresentativesCard.css';
 
-const description = [
-  'Amy is a violinist with 2 years experience in the wedding industry.',
-  'She enjoys the outdoors and currently resides in upstate New York.',
-].join(' ')
+// const description = [
+//   'Amy is a violinist with 2 years experience in the wedding industry.',
+//   'She enjoys the outdoors and currently resides in upstate New York.',
+// ].join(' ')
 
-const RepresentativesCard = () => (
-  <Card>
-    <Image src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg"/>
-    <Card.Content header='About Amy' />
-    <Card.Content description={description} />
-    <Card.Content extra>
-      <Icon name='user' />
-      4 Friends
-    </Card.Content>
-  </Card>
+// const RepresentativesCard = (props) => (
+//   <Card className="card">
+//   {console.log(props.rep)}
+//     <Image src={props.rep.photoUrl}/>
+//     <Card.Content header={props.rep.name} />
+//     <Card.Content description={description} />
+//     <Card.Content extra>
+//       <Icon name='user' />
+//       4 Friends
+//     </Card.Content>
+//   </Card>
+// )
+
+
+const RepresentativesCard = (props) => (
+    <div className="card">
+        rep card
+    </div>
 )
 
-export default RepresentativesCard
+export default RepresentativesCard;

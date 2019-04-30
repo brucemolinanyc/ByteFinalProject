@@ -30,16 +30,7 @@ class HomePage extends React.Component{
                     <Representatives/>
 
                 </div>
-                <div className="middle_segment">
-                    <div className="text">
-                        test of this fasfsdafsaddas
-                    </div>
-                </div>
-                <div className="lower_segment">
-                    <div className="text">
-                        test of this fasfsdafsaddas
-                    </div>
-                </div>
+             
             </div>
 
             </div>
@@ -52,3 +43,15 @@ class HomePage extends React.Component{
 
 
 export default HomePage;
+
+
+// <div className="middle_segment">
+// <div className="text">
+//     test of this fasfsdafsaddas
+// </div>
+// </div>
+// <div className="lower_segment">
+// <div className="text">
+//     test of this fasfsdafsaddas
+// </div>
+// </div>

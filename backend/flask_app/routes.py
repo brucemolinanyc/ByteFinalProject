@@ -66,9 +66,6 @@ def user(id):
 
 @app.route('/google/<city>/<state>/<zipcode>')
 def representatives(city, state, zipcode):
-    print(city)
-    print(state)
-    print(zipcode)
     response = requests.get('https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=officials&address='+ str(city) + '20%' + 'str(state)' + '%20' + str(zipcode) )
     data = response.json()
     return jsonify(data)
