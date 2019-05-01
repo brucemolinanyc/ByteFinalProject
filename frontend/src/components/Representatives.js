@@ -8,7 +8,9 @@ class Representatives extends React.Component{
  
     state = {
         input: null,
-        reps: null
+        divisions: null,
+        offices: null,
+        officials: null
     }
 
     onChange = (e) => {
@@ -31,13 +33,14 @@ class Representatives extends React.Component{
             }
         })
         .then(response => response.json())
-        .then(data => this.setState({reps:data.officials}))
+        .then(data => this.setState({
+            divisions: data.divisions,
+            offices: data.offices,
+            officials: data.officials
+        }))
     }
 
     render(){
-            // const reps = this.state.reps.map((rep, idx) => {return <RepresentativesCard key={idx} rep={rep} /> })
-            // const reps = "test"
-
         return(
             <div className="reps_container">
                 <div className="input_div">
@@ -49,7 +52,10 @@ class Representatives extends React.Component{
                         <button onClick={this.onClick} className="ui button green">Search</button>
                     </div>
                 </div>
-                {(this.state.reps !== null) && this.state.reps.map((el, idx)=> { return <RepresentativesCard key={idx} rep={el} /> })}
+
+                    <div className="reps_container">
+                        {(this.state.officials !== null) && this.state.officials.map((el, idx)=> { return <RepresentativesCard key={idx} rep={el} /> })}
+                    </div>
                
             </div>
         )

@@ -23,7 +23,9 @@ import './RepresentativesCard.css';
 
 const RepresentativesCard = (props) => (
     <div className="card">
-        rep card
+        <h1>{props.rep.name}</h1>
+        <p>{props.rep.party} </p>
+        {console.log(props)}
     </div>
 )
 
