@@ -1,23 +1,33 @@
- 
+ p {
+    font-size: 20px;
+ }
+
 
 .reps_container  {
    font-weight: bold;
-   padding: 20px;
+   padding: 30px;
    text-align: center;
-   width: 85% ;
+   width: 80% ;
    margin: auto;
 }
 
 .reps_container .input_div{
-   display: inline-block;
+   /* display: inline-block; */
    margin-bottom: 30px;
 }
 
 .reps_container .input_div h1{
-   display: inline-block;
-   font-size: 45px;
+   /* display: inline-block; */
+   font-size: 55px;
 }
 
+.reps_container .table tr,th{
+   width: 5%;
+   font-size: 15px;
+   border: 1px solid black;
+   text-align: left;
+   vertical-align: text-bottom;
+}
 /* .checkboxes{
    padding: 15px;
 }

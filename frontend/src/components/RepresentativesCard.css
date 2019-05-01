@@ -1,7 +1,7 @@
-.card{
-    border: 1px solid black;
+.card{    
     width: 300px;
     height: 450px;
-    display: inline-block;
-    margin: 10px;
+    float: left;
+    display: inline;
+    /* margin: 15px; */
 }

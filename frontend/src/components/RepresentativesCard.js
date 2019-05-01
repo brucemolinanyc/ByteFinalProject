@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Icon, Image} from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import './RepresentativesCard.css';
 
 // const description = [
@@ -22,11 +22,35 @@ import './RepresentativesCard.css';
 
 
 const RepresentativesCard = (props) => (
-    <div className="card">
-        <h1>{props.rep.name}</h1>
-        <p>{props.rep.party} </p>
-        {console.log(props)}
-    </div>
+
+    <table class="card">
+        <thead>
+            <tr>
+                <th>Representative</th>
+                <th>Office</th>
+                <th>Address</th>
+                <th>Links</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+<td>cell1_1</td><td>cell2_1</td><td>cell3_1</td><td>cell4_1</td></tr>
+</tbody>
+    </table>
+  
 )
 
 export default RepresentativesCard;
+// <h1>{props.rep.name}</h1>
+// <p>{props.rep.party} </p>
+
+
+// <div className="card">
+// {console.log(props)}
+// <img  height="100" width="100" src={props.official.photoUrl ? props.official.photoUrl : "https://us.123rf.com/450wm/sharpner/sharpner1702/sharpner170200005/71130029-waving-american-flag.jpg?ver=6"}></img>
+// <h1>{props.official.name}</h1>
+// <p>{props.offices && props.offices.name}</p>
+// <p>{props.official.party}</p>
+
+
+// </div>

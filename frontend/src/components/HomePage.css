@@ -1,6 +1,9 @@
 .home_container{
     max-height: 5000px;
-    padding-top: 75px
+    margin: auto;
+    padding-top: 50px;
+    width: 100%;
+
 }
 
 .header_class{
@@ -10,7 +13,7 @@
 .home_container .top_segment{
     font-size: 20px;
     background-color:rgb(244, 244, 244);
-    height: 1000px;
+    height: 2000px;
 } 
 
 /* .home_container .top_segment .text{
@@ -28,9 +31,9 @@
 
 } */
 
-.home_container .lower_segment{
+/* .home_container .lower_segment{
     background-color: rgb(117, 109, 162);
     font-size: 20px;
     height: 600px;
 
-}
+} */

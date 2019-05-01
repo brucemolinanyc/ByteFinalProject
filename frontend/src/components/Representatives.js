@@ -1,6 +1,7 @@
 import React from 'react';
 import RepresentativesCard from './RepresentativesCard';
-import './Representatives.css'  
+import Table from './Table';
+import './Representatives.css';  
 import { Card } from 'semantic-ui-react';
 
 
@@ -41,6 +42,15 @@ class Representatives extends React.Component{
     }
 
     render(){
+        const reps = (this.state.officials !== null) && this.state.officials.map((el, idx) =>  
+                            <Table 
+                            key={idx}
+                            index={idx} 
+                            divisions={this.state.divisions}
+                            offices={this.state.offices[idx]} 
+                            official={this.state.officials[idx]}
+                            /> )
+        
         return(
             <div className="reps_container">
                 <div className="input_div">
@@ -53,8 +63,13 @@ class Representatives extends React.Component{
                     </div>
                 </div>
 
-                    <div className="reps_container">
-                        {(this.state.officials !== null) && this.state.officials.map((el, idx)=> { return <RepresentativesCard key={idx} rep={el} /> })}
+                
+                   
+            
+               
+
+                    <div className="representatives">
+                        {(this.state.officials !== null) && reps }
                     </div>
                
             </div>
