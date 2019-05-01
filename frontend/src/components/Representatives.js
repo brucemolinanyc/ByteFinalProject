@@ -23,15 +23,11 @@ class Representatives extends React.Component{
         const city = address_elements.slice(-3)[0]
         const state = address_elements.slice(-2)[0]
         const zipcode = address_elements.slice(-1)[0]
-        // console.log(`http://127.0.0.1:5000/google/${city}/${state}/${zipcode}`)
+        console.log(`http://127.0.0.1:5000/google/${city}/${state}/${zipcode}`)
 
         fetch(`http://127.0.0.1:5000/google/${city}/${state}/${zipcode}`, {
             method: 'get',
             mode: "cors",
-            headers: {
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": '*'
-            }
         })
         .then(response => response.json())
         .then(data => this.setState({

@@ -67,10 +67,10 @@ def user(id):
 @app.route('/google/<city>/<state>/<zipcode>')
 def representatives(city, state, zipcode):
     request_headers = {'Access-Control-Allow-Origin': '*', 'Accept': '/', 'accept-encoding': 'gzip, deflate', 'Connection': 'keep-alive'}
-    response = requests.get('https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=divisions,offices,officials&address='+ str(city) + '20%' + 'str(state)' + '%20' + str(zipcode), headers=request_headers)
+    response = requests.get('https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&address=' + str(city) + '20%' + str(state) + '%20' + str(zipcode), headers=request_headers)   
     data = response.json()
     return jsonify({'divisions': data['divisions'], 'offices': data['offices'], 'officials': data['officials']})
-    # https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=officials&address=whitestone%20%ny%2011357
+    # https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&address=whitestone%20%ny%2011357
     # https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=officials&address={}20%{}%20{}'.format(city,state,zipcode), headers={"Accept": "*/*","Access-Control-Allow-Origin" : "*", "X-Content-Type-Options": "nosniff"}
     # https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=officials&address=' + city + "20%" + state + "%20" + zipcode, headers={'Content-Type': 'application/json','Access-Control-Allow-Origin': '*'}
     # https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyAGlkBc9s481EmabJcY3xA3TdLYpruUAHI&fields=officials&address=' + city + "20%" + state + "%20" + zipcode

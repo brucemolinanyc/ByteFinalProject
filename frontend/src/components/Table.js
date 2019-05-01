@@ -2,7 +2,6 @@ import React from 'react';
 
 const Table = (props) => (
     <table className="table" >
-    {console.log(props)}
         <thead>
             <tr>
                 <th>Representative</th>
@@ -17,7 +16,12 @@ const Table = (props) => (
             {props.official.name} &nbsp; ({props.official.party.slice(0,1) === "R" ? <font color="red">R</font> : <font color="blue">D</font>})
             </td>
             <td>{props.offices && props.offices.name} </td>
-            <td>cell3_1</td>
+            <td>
+            {props.official.address && props.official.address[0].line1} <br></br>
+            {props.official.address && props.official.address[0].line2} <br></br>
+            {props.official.address && props.official.address[0].city + ","} {props.official.address && props.official.address[0].state} {props.official.address && props.official.address[0].zip}
+
+            </td>
             <td>cell4_1</td>
             </tr>
         </tbody>
