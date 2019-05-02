@@ -11,7 +11,9 @@ class Representatives extends React.Component{
         input: null,
         divisions: null,
         offices: null,
-        officials: null
+        officials: null,
+        specificOfficeName: null,
+        specificOfficialName: null
     }
 
     onChange = (e) => {
@@ -23,18 +25,35 @@ class Representatives extends React.Component{
         const city = address_elements.slice(-3)[0]
         const state = address_elements.slice(-2)[0]
         const zipcode = address_elements.slice(-1)[0]
-        console.log(`http://127.0.0.1:5000/google/${city}/${state}/${zipcode}`)
 
         fetch(`http://127.0.0.1:5000/google/${city}/${state}/${zipcode}`, {
             method: 'get',
             mode: "cors",
         })
         .then(response => response.json())
-        .then(data => this.setState({
-            divisions: data.divisions,
+        .then(data => {
+            const offices_state = []
+            const officials_state = []
+            data.offices.map((el) => {
+                var i = 0
+                do {
+                    i ++
+                    offices_state.push(el.name)
+                } while(i < el.officialIndices.length);
+            })
+            data.officials.map((el) => {
+                officials_state.push(el.name)
+            })
+            
+            this.setState({
+            specificOfficeName: offices_state,
+            specificOfficialName: officials_state,
             offices: data.offices,
             officials: data.officials
-        }))
+        })
+        
+        }
+        )
     }
 
     render(){
@@ -42,9 +61,10 @@ class Representatives extends React.Component{
                             <Table 
                             key={idx}
                             index={idx} 
-                            divisions={this.state.divisions}
-                            offices={this.state.offices[idx]} 
                             official={this.state.officials[idx]}
+                            // offices={this.state.offices}
+                            specificOfficeName={this.state.specificOfficeName[idx]} 
+                            specificOfficialName={this.state.specificOfficialName[idx]}
                             /> )
         
         return(
@@ -59,7 +79,7 @@ class Representatives extends React.Component{
                     </div>
                 </div>
 
-                
+                {console.log(this.state)}
                    
             
                
