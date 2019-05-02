@@ -8,6 +8,13 @@ class RepresentativesCard extends React.Component{
         super(props)
     }
 
+    state = {
+        bio: null,
+        npat: null,
+        ratings: null,
+        votes: null
+    }
+
     componentDidMount = () => {
         const fullName = this.props.match.url.split("/").slice(-1).join(" ")
         const firstName = this.props.match.url.split(/[\s,"/"]+/)[2].trim()
@@ -19,7 +26,6 @@ class RepresentativesCard extends React.Component{
         })
         .then(response => response.json()) 
         .then(data => {
-            console.log(data)
             // getting the candidateId for a person
             if(Array.isArray(data.candidateList.candidate)){
                 candidateId = data.candidateList.candidate.filter( (el) => 
@@ -27,10 +33,45 @@ class RepresentativesCard extends React.Component{
             } else {
                 candidateId = data.candidateList.candidate.candidateId
             }
-            console.log(candidateId)
+
+            // getting the candidates full bio
+            fetch(`http://api.votesmart.org/CandidateBio.getDetailedBio?key=e6c9d393d6cf259456bcb71e26922bcd&candidateId=${candidateId}&o=JSON`, {
+                method: 'get',
+                mode: 'cors'
+            })
+            .then(response => response.json())
+            .then(bio => this.setState({bio:bio}))
+
+            // getting the candidates npat
+            fetch(`http://api.votesmart.org/Npat.getNpat?key=e6c9d393d6cf259456bcb71e26922bcd&candidateId=${candidateId}&o=JSON
+            `, {
+                method: 'get',
+                mode: 'cors'
+            })
+            .then(response => response.json())
+            .then(npat => this.setState({npat:npat}))
+
+            //getting the candidates ratings
+            fetch(`http://api.votesmart.org/Rating.getCandidateRating?key=e6c9d393d6cf259456bcb71e26922bcd&candidateId=${candidateId}&o=JSON
+            `, {
+                method: 'get',
+                mode: 'cors'
+            })
+            .then(response => response.json())
+            .then(ratings => this.setState({ratings:ratings}))
+
+            //getting the candidates ratings
+            fetch(`http://api.votesmart.org/Votes.getByOfficial?key=e6c9d393d6cf259456bcb71e26922bcd&candidateId=${candidateId}&o=JSON
+            `, {
+                method: 'get',
+                mode: 'cors'
+            })
+            .then(response => response.json())
+            .then(votes => this.setState({votes:votes}))
+
+
         })
- 
-        // getting the candidates full bio
+
     }
 
     render(){
@@ -46,7 +87,7 @@ class RepresentativesCard extends React.Component{
                     <p>i am a rep card</p>
                     <p>i am a rep card</p>
                     <p>i am a rep card</p>
-                    {console.log(this.props)}
+                    {console.log(this.state)}
                     <p>from here call the other vote smart api with the name</p>
                 </div>    
             </div>
