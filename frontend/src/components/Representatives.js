@@ -65,7 +65,18 @@ class Representatives extends React.Component{
                
 
                     <div className="representatives">
-                        {(this.state.officials !== null) && reps }
+                        {(this.state.officials && 
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>Representative</th>
+                                        <th>Office</th>
+                                        <th>Address</th>
+                                        <th>Links</th>
+                                    </tr>
+                                </thead>
+                                {(this.state.officials !== null) && reps }
+                            </table>)}
                     </div>
                
             </div>
