@@ -1,12 +1,12 @@
 import React from 'react';
-import RepresentativesCard from './RepresentativesCard';
 import Table from './Table';
 import './Representatives.css';  
-import { Card } from 'semantic-ui-react';
-
 
 class Representatives extends React.Component{
- 
+    constructor(){
+        super()
+    }
+
     state = {
         input: null,
         divisions: null,
@@ -15,6 +15,7 @@ class Representatives extends React.Component{
         specificOfficeName: null,
         specificOfficialName: null
     }
+    
 
     onChange = (e) => {
         this.setState({input: e.target.value})
@@ -79,7 +80,6 @@ class Representatives extends React.Component{
                     </div>
                 </div>
 
-                {console.log(this.state)}
                    
             
                
@@ -104,7 +104,6 @@ class Representatives extends React.Component{
     }
 }
 
-// <Card.Group  itemsPerRow={4}> {reps}</Card.Group>
 
 export default Representatives;
 

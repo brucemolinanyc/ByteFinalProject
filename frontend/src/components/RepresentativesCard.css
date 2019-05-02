@@ -1,1 +1,8 @@
-/*  */
+.header_class{
+    width: 100%;
+    position: fixed;
+}
+
+.rep_container{
+    padding-top: 75px
+}

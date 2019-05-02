@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {Button} from 'semantic-ui-react';
+
 
 const Table = (props) => (
     
@@ -18,7 +20,7 @@ const Table = (props) => (
                 
             </td>
             <td>
-            <Button primary>Details</Button>
+            <Link to={`/representative/${props.specificOfficialName}`}>Profile</Link>
             </td>
             </tr>
             </tbody>
