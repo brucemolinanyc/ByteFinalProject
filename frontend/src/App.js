@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 import AppRouter from './routers/AppRouter'
+
 
 const jsx = (
   <AppRouter/>

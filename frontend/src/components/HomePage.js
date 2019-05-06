@@ -26,7 +26,10 @@ class HomePage extends React.Component{
             </div>
             
             <div className="home_container">
-                    <Representatives/>              
+                <div className="top_segment">
+                    <Representatives/>
+                </div>
+             
             </div>
 
             </div>

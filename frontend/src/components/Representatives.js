@@ -95,7 +95,7 @@ class Representatives extends React.Component{
                                         <th>Links</th>
                                     </tr>
                                 </thead>
-                                {(this.state.officials !== null) && reps }
+                            {(this.state.officials !== null) && reps }
                             </table>)}
                     </div>
                

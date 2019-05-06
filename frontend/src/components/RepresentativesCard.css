@@ -3,6 +3,10 @@
     position: fixed;
 }
 
-.rep_container{
-    padding-top: 75px
+.representatives_container{
+    padding-top: 75px;
+    width: 95%;
+    margin: auto;
+    border: 1px solid black
+
 }
